@@ -1,0 +1,23 @@
+-- OBJECTIVE: Calculate Digital Completion Rate and Average Handling Time (AHT)
+-- AUTHOR: Benjamin Mba
+-- CONTEXT: Monthly Performance Reporting for Service Owner
+
+WITH session_data AS (
+    SELECT 
+        count(*) as total_starts,
+        sum(CASE WHEN status = 'COMPLETED' THEN 1 ELSE 0 END) as total_completes,
+        -- Calculate time spent in minutes
+        avg(EXTRACT(EPOCH FROM (timestamp_end - timestamp_start))/60) as avg_time_mins
+    FROM intake_logs
+    WHERE channel = 'WEB'
+    AND timestamp_start >= DATE_TRUNC('month', CURRENT_DATE)
+)
+
+SELECT 
+    total_starts,
+    total_completes,
+    -- Calculate Completion Rate %
+    ROUND((total_completes::float / total_starts) * 100, 2) as completion_rate_pct,
+    -- Calculate Average Handling Time
+    ROUND(avg_time_mins, 2) as avg_completion_time_mins
+FROM session_data;

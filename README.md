@@ -53,6 +53,19 @@ graph TD
     class D system
 ```
 
+## 📈 Performance Analysis
+*Defining success through data-driven insights.*
+
+As a Performance Analyst, I have defined the measurement strategy to ensure this service meets **GDS Service Standards**.
+
+### 1. The Measurement Plan
+I have mapped the [**Performance Framework**](./analytics/performance-framework.md) to track:
+* **Mandatory Metrics:** Completion Rate, Cost per Transaction.
+* **Operational KPIs:** Validation Failure Rates (to identify "bad" form questions).
+
+### 2. SQL Analysis Example
+I have written [**SQL Queries**](./src/analytics/calculate_completion_rate.sql) to extract key metrics from raw application logs, calculating **Average Handling Time (AHT)** and **Digital Take-up** to inform continuous improvement.
+
 ## 📂 2. Portfolio Artefacts
 
 ### Discovery & Learning
